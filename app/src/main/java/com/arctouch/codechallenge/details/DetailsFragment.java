@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,6 +32,7 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.details_fragment, container, false);
         final MovieImageUrlBuilder movieImageUrlBuilder = new MovieImageUrlBuilder();
+        setHasOptionsMenu(true);
 
         ImageView posterImage = view.findViewById(R.id.imagePosterDetails);
         TextView genreTextView = view.findViewById(R.id.textGenre);
@@ -47,5 +50,11 @@ public class DetailsFragment extends Fragment {
         releaseTextView.setText("Release date: "+movie.releaseDate);
 
         return view;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.search);
+        item.setVisible(false);
     }
 }

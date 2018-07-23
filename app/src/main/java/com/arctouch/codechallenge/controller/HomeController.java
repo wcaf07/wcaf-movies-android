@@ -34,6 +34,11 @@ public class HomeController {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<UpcomingMoviesResponse> searchMovies(long page, String query) {
+        return APIHelper.getApi().searchMovies(TmdbApi.API_KEY, query, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
     public List<Movie> addGenreToMovies(List<Movie> result) {
         for (Movie movie : result) {
