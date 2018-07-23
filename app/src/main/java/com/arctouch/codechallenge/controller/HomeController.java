@@ -22,22 +22,34 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeController {
 
     public Observable<GenreResponse> loadGenres() {
-        return APIHelper.getApi().genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        try {
+            return APIHelper.getApi().genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 
     public Observable<UpcomingMoviesResponse> loadUpcomingMoviesByPage(long page) {
-        return APIHelper.getApi().upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        try {
+            return APIHelper.getApi().upcomingMovies(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE, page)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public Observable<UpcomingMoviesResponse> searchMovies(long page, String query) {
-        return APIHelper.getApi().searchMovies(TmdbApi.API_KEY, query, page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        try {
+            return APIHelper.getApi().searchMovies(TmdbApi.API_KEY, query, page)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<Movie> addGenreToMovies(List<Movie> result) {
