@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
         this.recyclerView.addOnScrollListener(endlessRecyclerViewScrollListener);
 
         homeController = new HomeController();
-        homeController.setGenres().subscribe(response -> {
+        homeController.loadGenres().subscribe(response -> {
             Cache.setGenres(response.genres);
             loadMovies();
         });

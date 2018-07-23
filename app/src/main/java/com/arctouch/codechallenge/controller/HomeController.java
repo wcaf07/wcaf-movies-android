@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeController {
 
-    public Observable<GenreResponse> setGenres() {
+    public Observable<GenreResponse> loadGenres() {
         return APIHelper.getApi().genres(TmdbApi.API_KEY, TmdbApi.DEFAULT_LANGUAGE)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
